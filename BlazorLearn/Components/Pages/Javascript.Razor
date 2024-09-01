@@ -1,0 +1,59 @@
+@page "/javascript"
+@rendermode InteractiveServer
+@inject IJSRuntime js
+
+<h1>Llamar codigo Javascript</h1>
+<button @onclick="MostrarAlerta">Mostrar Alerta</button>
+
+<button @onclick="AlertaJs">Swet alert</button>
+
+<h1>Llamar metodo c#  desde javascript</h1>
+<button id="btnLlamarCSharp">Llamar Método C#</button>
+<p>@mensaje</p>
+
+<script>
+        document.getElementById('btnLlamarCSharp').addEventListener('click', function () {
+        DotNet.invokeMethodAsync('NombreDelProyecto', 'MostrarMensaje', '¡Hola desde JavaScript!')
+            .then(data => console.log('Método C# invocado correctamente'));
+    });
+</script>
+
+@code {
+
+    private string mensaje = "Esperando...";
+
+    private async Task MostrarAlerta()
+    {
+        await js.InvokeVoidAsync("alert", "¡Hola desde Blazor!");
+    }
+
+    private  async Task AlertaJs()
+    {
+        var messageParams = new
+        {
+            title = "Remove Pizza?",
+            text = $"""Do you want to remove the pizza from your order?""",
+            icon = "warning",
+            buttons = new
+            {
+                abort = new { text = "No, leave it in my order", value = false },
+                confirm = new { text = "Yes, remove pizza", value = true }
+            },
+            dangerMode = true
+        };
+
+        if (await js.InvokeAsync<bool>("swal", messageParams))
+        {
+            mensaje = "Eliminado bebe";
+        }
+    }
+
+
+
+    [JSInvokable]
+    public void MostrarMensaje(string texto)
+    {
+        mensaje = texto;
+        StateHasChanged();
+    }
+}

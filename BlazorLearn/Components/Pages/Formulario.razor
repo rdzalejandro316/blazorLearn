@@ -1,0 +1,41 @@
+@using BlazorApp1.Components.Pages.Services
+
+@page "/formulario"
+@rendermode InteractiveServer
+@inject WeatherForecastService ForecastService
+@inject IJSRuntime js
+
+<PageTitle>Formulario</PageTitle>
+
+<h3>Formulario</h3>
+<button class="btn btn-primary" @onclick="ViewValue">View</button>
+
+<EditForm Model=@currentForecast>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputDate @bind-Value=currentForecast.Date></InputDate>
+    <InputNumber @bind-Value=currentForecast.TemperatureC></InputNumber>
+    <InputText @bind-Value=currentForecast.Summary></InputText>
+    <ValidationMessage For="@(() => currentForecast.Summary)" />
+</EditForm>
+
+@code {
+    private WeatherForecast currentForecast = new WeatherForecast();
+    private int index = 0;
+    private int upperIndex = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var forecasts = await ForecastService.GetForecastAsync();
+        currentForecast = forecasts[0];
+        upperIndex = forecasts.Count() - 1;
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender) 
+        => await js.InvokeAsync<object>("console.log",currentForecast);
+
+    public async void ViewValue() 
+    {
+        await js.InvokeAsync<object>("console.log",currentForecast);
+    }
+}

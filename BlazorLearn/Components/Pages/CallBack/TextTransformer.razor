@@ -1,0 +1,19 @@
+@page "/texttransformer"
+@using BlazorApp1.Components.Pages.CallBack;
+
+<h1>Text Transformer - Parent</h1>
+
+<TextDisplay OnKeyPressCallback="@TransformText" />
+
+<p>Text @data</p>
+
+@code {
+    
+    string data;
+    private void TransformText(KeyTransformation k)
+    {
+        k.TransformedKey = k.Key.ToUpper();
+        data = k.Key.ToUpper();
+        Console.WriteLine($"aaaaaaaaaaaa {k.Key.ToUpper()}");
+    }
+}
