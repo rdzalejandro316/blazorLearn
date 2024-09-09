@@ -1,14 +1,12 @@
 ﻿@page "/counter/baby"
 @using BlazorApp1.Components.Layout
 @rendermode InteractiveServer
-@* @rendermode InteractiveWebAssembly *@
 @inject NavigationManager NavManager
-@* @layout MainLayout *@
 @inject IJSRuntime js
 
 <PageTitle>Counter</PageTitle>
 
-<h3>Counter</h3>
+<h3>Counter @MyAppConfig.ApiBaseUrl</h3>
 <p role="status">Current count: @currentCount</p>
 <button @ref="BtnCounter" class="btn btn-primary" @onclick="IncrementCount">Click me baby</button>
 

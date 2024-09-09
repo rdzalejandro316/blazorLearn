@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorLearn\BlazorApp1.csproj", "{CA424728-DD14-49A6-86D6-3014C9252E46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorClassLibrary", "RazorClassLibrary\RazorClassLibrary.csproj", "{B31C2CF3-53A2-4FDA-8234-7D763D9B6AE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary", "RazorClassLibrary\RazorClassLibrary.csproj", "{B31C2CF3-53A2-4FDA-8234-7D763D9B6AE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

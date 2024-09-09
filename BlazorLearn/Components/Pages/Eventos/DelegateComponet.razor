@@ -1,0 +1,13 @@
+@page "/eventos/delegate-example"
+@rendermode InteractiveServer
+
+@code {    
+    public delegate void OnButtonClickDelegate();    
+    public event OnButtonClickDelegate OnButtonClick;
+    void HandleButtonClick() => OnButtonClick?.Invoke();        
+    void ShowMessage() =>    Console.WriteLine("Button clicked!");
+    
+    protected override void OnInitialized() => OnButtonClick += ShowMessage;    
+}
+
+<button @onclick="HandleButtonClick">Click me</button>

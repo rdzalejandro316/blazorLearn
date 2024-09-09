@@ -1,0 +1,13 @@
+@page "/eventos/example"
+@rendermode InteractiveServer
+
+@code {
+    private int count = 0;
+    void IncrementCount()
+    {
+        count++;
+    }
+}
+
+<p>Count: @count</p>
+<button @onclick="IncrementCount">Click me</button>
