@@ -1,5 +1,6 @@
 using BlazorApp1.Components;
 using BlazorApp1.Components.Pages.Services;
+using BlazorApp1.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddTransient<LoggingMiddleware>();
 
 
 var app = builder.Build();
@@ -28,5 +31,7 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
     //.AddInteractiveWebAssemblyRenderMode();  
+
+app.UseMiddleware<LoggingMiddleware>();
 
 app.Run();
