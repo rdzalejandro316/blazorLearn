@@ -1,0 +1,10 @@
+@page "/parametroArbitrario"
+@rendermode InteractiveServer
+
+<h1>Parametros arbitrarios</h1>
+<input type="text" @attributes=parametrosAdicionales/>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> parametrosAdicionales { get; set; } = default!;
+}

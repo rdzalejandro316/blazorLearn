@@ -1,0 +1,10 @@
+@page "/parametro"
+@rendermode InteractiveServer
+
+<h1>H1 parametro</h1>
+<p>@parametro</p>
+
+@code {
+    [Parameter]
+    public string parametro { get; set; } = "defecto";
+}
