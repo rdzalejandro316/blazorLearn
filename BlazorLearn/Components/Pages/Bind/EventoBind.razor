@@ -1,0 +1,11 @@
+@page "/eventoBind"
+@rendermode InteractiveServer
+
+<h1>Envento bind</h1>
+<input type="text" @bind=@valor @bind:event="oninput"/>
+
+<p>El valor es @valor</p>
+
+@code {
+    private string? valor {get;set;}
+}

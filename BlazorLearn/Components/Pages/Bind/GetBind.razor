@@ -1,0 +1,22 @@
+@page "/getsetBind"
+@rendermode InteractiveServer
+
+<HeadContent>
+    <title>Mi aplicación Blazor</title>
+    <meta name="description" content="Esta es una descripción de mi aplicación." />
+</HeadContent>
+
+
+<h1>Get and Set bind</h1>
+<input type="text" @bind:get=@texto @bind:set="SetAsync" @bind:event="oninput"/>
+
+<p>El valor es @texto</p>
+
+@code {
+    private string texto {get;set;} = string.Empty;
+    public Task SetAsync(string valor)
+    {
+        texto = valor.ToUpper();
+        return Task.CompletedTask;
+    }
+}
